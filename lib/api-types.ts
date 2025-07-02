@@ -1,0 +1,62 @@
+export interface Property {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  currency: string;
+  type: 'APARTMENT' | 'VILLA' | 'TOWNHOUSE' | 'PENTHOUSE' | 'STUDIO' | 'OFFICE' | 'SHOP' | 'WAREHOUSE' | 'LAND' | 'BUILDING';
+  status: 'AVAILABLE' | 'SOLD' | 'RENTED' | 'RESERVED' | 'OFF_MARKET';
+  bedrooms?: number;
+  bathrooms?: number;
+  area?: number;
+  location: string;
+  address: string;
+  city: string;
+  country: string;
+  latitude?: number;
+  longitude?: number;
+  images: string[];
+  features: string[];
+  amenities: string[];
+  yearBuilt?: number;
+  parking?: number;
+  furnished: boolean;
+  petFriendly: boolean;
+  utilities?: string;
+  contactInfo?: string;
+  agentId?: string;
+  isActive: boolean;
+  isFeatured: boolean;
+  viewCount: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface PropertyInput {
+  title: string;
+  description: string;
+  price: number;
+  currency?: string;
+  type: Property['type'];
+  status?: Property['status'];
+  bedrooms?: number;
+  bathrooms?: number;
+  area?: number;
+  location: string;
+  address: string;
+  city: string;
+  country?: string;
+  latitude?: number;
+  longitude?: number;
+  images?: string[];
+  features?: string[];
+  amenities?: string[];
+  yearBuilt?: number;
+  parking?: number;
+  furnished?: boolean;
+  petFriendly?: boolean;
+  utilities?: string;
+  contactInfo?: string;
+  agentId?: string;
+  isFeatured?: boolean;
+} 
