@@ -21,7 +21,6 @@ export const useDashboardStore = create<DashboardState>((set) => ({
   dailyMessages: {},
   loading: true,
   error: null,
-
   fetchDashboardData: async () => {
     set({ loading: true, error: null });
 
