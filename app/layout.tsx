@@ -1,12 +1,10 @@
 import type React from "react";
- import { Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import AuthProvider from "@/components/pages/auth/AuthProvider";
-import MiddlewareAuth from "@/components/pages/auth/middlewareAuth";
 const inter = Inter({ subsets: ["latin"] });
-
-// Cairo font import via Google Fonts CDN in globals.css
-// @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+import { AuthKitProvider } from '@workos-inc/authkit-nextjs/components';
+import UserInfoWrapper from "@/components/UserInfo";
+import { redirect } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -14,15 +12,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <AuthProvider>
-      <html lang={"ar"} dir={"rtl"} className={"font-cairo"}>
-        <body>
-          <MiddlewareAuth />
-            {children}
-        
-        </body>
-      </html>
-    </AuthProvider>
-
+    <html lang={"ar"} dir={"rtl"} className={"font-cairo"}>
+      <body>
+        <AuthKitProvider>
+          <UserInfoWrapper >
+            {({ user, isAdmin }) => {
+              if (!isAdmin) {
+                redirect("/no-permission");
+              }
+              return children;
+            }}
+          </UserInfoWrapper>
+        </AuthKitProvider>
+      </body>
+    </html>
   );
 }
