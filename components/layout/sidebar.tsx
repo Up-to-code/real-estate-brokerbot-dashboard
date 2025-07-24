@@ -9,8 +9,7 @@ import {
   HomeIcon,
   ChartBarIcon,
   UserGroupIcon,
-  CubeIcon,
-  ShoppingCartIcon,
+
   CogIcon,
   XMarkIcon,
   ChatBubbleLeftRightIcon,
@@ -19,17 +18,30 @@ import {
   UsersIcon,
   BuildingOffice2Icon,
 } from "@heroicons/react/24/outline";
- 
+import { useUser } from "@clerk/nextjs";
+
 const navigationItems = [
   { name: t("navigation.dashboard"), href: "/", icon: HomeIcon },
-  { name: t("navigation.aiTraining"), href: "/ai-training", icon: ChatBubbleLeftRightIcon },
-  { name: t("navigation.templates"), href: "/templates", icon: DocumentTextIcon },
+  {
+    name: t("navigation.aiTraining"),
+    href: "/ai-training",
+    icon: ChatBubbleLeftRightIcon,
+  },
+  {
+    name: t("navigation.templates"),
+    href: "/templates",
+    icon: DocumentTextIcon,
+  },
   { name: t("navigation.campaigns"), href: "/campaigns", icon: MegaphoneIcon },
   { name: t("navigation.clients"), href: "/clients", icon: UsersIcon },
-  { name: t("navigation.properties"), href: "/properties", icon: BuildingOffice2Icon },
+  {
+    name: t("navigation.properties"),
+    href: "/properties",
+    icon: BuildingOffice2Icon,
+  },
   { name: t("navigation.analytics"), href: "/analytics", icon: ChartBarIcon },
   { name: t("navigation.users"), href: "/users", icon: UserGroupIcon },
-    { name: t("navigation.settings"), href: "/settings", icon: CogIcon },
+  { name: t("navigation.settings"), href: "/settings", icon: CogIcon },
 ];
 
 interface SidebarProps {
@@ -128,20 +140,23 @@ export function Sidebar({ className }: SidebarProps) {
 }
 
 function SidebarUserSection() {
- 
-  const user = {
-    name: "John Doe",
-    email: "john.doe@example.com",
-    image: "https://via.placeholder.com/150",
-  };
+  const { user } = useUser();
   return (
     <div className="flex items-center">
       <div className="ml-3">
-        <p className="text-sm font-medium text-gray-700">{user?.name || "Guest"}</p>
-        <p className="text-xs text-gray-500">{user?.email || "Not signed in"}</p>
+        <p className="text-sm font-medium text-gray-700">
+          {user?.fullName || "Guest"}
+        </p>
+        <p className="text-xs text-gray-500">
+          {user?.emailAddresses[0].emailAddress || "Not signed in"}
+        </p>
       </div>
-      {user?.image ? (
-        <img src={user.image} alt="User avatar" className="h-8 w-8 rounded-full object-cover" />
+      {user?.imageUrl ? (
+        <img
+          src={user.imageUrl}
+          alt="User avatar"
+          className="h-8 w-8 rounded-full object-cover"
+        />
       ) : (
         <div className="h-8 w-8 rounded-full bg-gray-300" />
       )}
