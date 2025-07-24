@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useDashboardStore } from "@/store/useDashboardStore";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Spinner } from "@/components/ui/Spinner";
+  import { Spinner } from "@/components/ui/Spinner";
 
 export function DashboardStats() {
   const {

@@ -1,8 +1,7 @@
-export function Spinner(className: { className?: string }) {
-    return (
-      <div className="flex justify-center items-center p-4">
-        <div className={`h-8 w-8 animate-spin rounded-full border-4 border-blue-500 border-t-transparent ${className}`} />
-      </div>
-    );
-  }
-  
+"use client";
+import React from "react";
+import { Loader2 } from "lucide-react";
+
+export const Spinner = () => {
+  return <Loader2 className="animate-spin" />;
+};

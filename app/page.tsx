@@ -10,13 +10,15 @@ import {
 } from "@/components/pages/dashboard";
 import { getText } from "@/lib/text-content";
 import { ChartDailyMessages } from "@/components/pages/dashboard/Chart";
+ 
 
 export default function DashboardPage() {
+
   return (
     <DashboardLayout>
       <PageHeader
         title={getText("dashboard.title")}
-        subtitle={getText("dashboard.subtitle")}
+        subtitle={getText("dashboard.subtitle") }
       />
       <WelcomeMessage />
       <StatsGrid />

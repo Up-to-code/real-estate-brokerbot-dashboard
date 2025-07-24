@@ -47,29 +47,36 @@ const userColumns = [
 ]
 
 export default function UsersPage() {
+  const user = {
+    name: "John Doe",
+    email: "john.doe@example.com",
+    image: "https://via.placeholder.com/150",
+    role: "Admin",
+  };
   return (
     <DashboardLayout>
       <PageHeader
         title={getText("users.title")}
         subtitle={getText("users.subtitle")}
-        action={
-          <Button>
-            <PlusIcon className="mr-2 h-4 w-4" />
-            {getText("users.addUser")}
-          </Button>
-        }
       />
-
-      {/* Search */}
-      <div className="mb-6">
-        <div className="relative">
-          <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <Input placeholder={getText("users.searchPlaceholder")} className="pl-10" />
-        </div>
+      <div className="mt-8">
+        {user ? (
+          <div className="p-6 bg-white rounded shadow flex items-center gap-4">
+            {user.image ? (
+              <img src={user.image} alt="User avatar" className="h-16 w-16 rounded-full object-cover" />
+            ) : (
+              <div className="h-16 w-16 rounded-full bg-gray-300" />
+            )}
+            <div>
+              <div className="text-lg font-bold">{user.name}</div>
+              <div className="text-gray-600">{user.email}</div>
+              <div className="text-gray-500 text-sm">{user.role}</div>
+            </div>
+          </div>
+        ) : (
+          <div className="text-gray-500">{getText("users.noUsers")}</div>
+        )}
       </div>
-
-      {/* Users table */}
-      <DataTable columns={userColumns} data={users} emptyMessage={getText("users.noUsers")} />
     </DashboardLayout>
-  )
+  );
 }

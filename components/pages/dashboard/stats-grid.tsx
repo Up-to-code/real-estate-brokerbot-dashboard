@@ -46,7 +46,7 @@ export function StatsGrid() {
               key={i}
               title={stat.title}
               value={stat.value}
-              icon={stat.icon}
+              icon={<stat.icon className="w-6 h-6" />}
             />
           ))}
     </div>

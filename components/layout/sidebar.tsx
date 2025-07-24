@@ -19,7 +19,7 @@ import {
   UsersIcon,
   BuildingOffice2Icon,
 } from "@heroicons/react/24/outline";
-
+ 
 const navigationItems = [
   { name: t("navigation.dashboard"), href: "/", icon: HomeIcon },
   { name: t("navigation.aiTraining"), href: "/ai-training", icon: ChatBubbleLeftRightIcon },
@@ -79,13 +79,7 @@ export function Sidebar({ className }: SidebarProps) {
 
       {/* User section */}
       <div className="border-t border-gray-200 p-4">
-        <div className="flex items-center">
-          <div className="ml-3">
-            <p className="text-sm font-medium text-gray-700">Admin User</p>
-            <p className="text-xs text-gray-500">admin@example.com</p>
-          </div>
-          <div className="h-8 w-8 rounded-full bg-gray-300"></div>
-        </div>
+        <SidebarUserSection />
       </div>
     </div>
   );
@@ -130,5 +124,27 @@ export function Sidebar({ className }: SidebarProps) {
         </div>
       </div>
     </>
+  );
+}
+
+function SidebarUserSection() {
+ 
+  const user = {
+    name: "John Doe",
+    email: "john.doe@example.com",
+    image: "https://via.placeholder.com/150",
+  };
+  return (
+    <div className="flex items-center">
+      <div className="ml-3">
+        <p className="text-sm font-medium text-gray-700">{user?.name || "Guest"}</p>
+        <p className="text-xs text-gray-500">{user?.email || "Not signed in"}</p>
+      </div>
+      {user?.image ? (
+        <img src={user.image} alt="User avatar" className="h-8 w-8 rounded-full object-cover" />
+      ) : (
+        <div className="h-8 w-8 rounded-full bg-gray-300" />
+      )}
+    </div>
   );
 }
