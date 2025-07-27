@@ -187,6 +187,7 @@ import {
 } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from 'next/link'
 
 interface NewClientForm {
   name: string
@@ -592,14 +593,14 @@ export default function ClientsPage({}: ClientsPageProps) {
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-1">
+                          <Link href={`/clients/chat/${client.id}`} >
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => setSelectedClient(client.id)}
-                            className="bg-primary hover:text-blue-800"
+                             className="text-blue-800"
                           >
                             <MessageCircle className="h-4 w-4" />
-                          </Button>
+                          </Button></Link>
                           <Button
                             variant="ghost"
                             size="sm"
